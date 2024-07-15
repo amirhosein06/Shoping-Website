@@ -1,10 +1,12 @@
 import Navbar from "./components/navbar"
+import Slides from "./components/slides"
 
 function App() {
 
   return (
     <>
       <Navbar />
+      <Slides />
     </>
   )
 }

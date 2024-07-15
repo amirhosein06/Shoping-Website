@@ -28,7 +28,7 @@ const Navbar = () => {
           <div>Discount 10% for summery products  |  <a href="#" className="underline">check now</a></div>
           <DiscountShape size={24} color="#fff" className="animate-bounce hidden sm:block"/>
         </div>
-        <div className="w-full h-14 shadow grid grid-cols-9 md:grid-cols-12">
+        <div className="z-50 w-full h-14 shadow grid grid-cols-9 md:grid-cols-12">
           <a className="col-start-1 md:col-end-3 col-end-4 flex md:pl-4 items-center overflow-hidden font-mono font-extrabold text-2xl" href='#'><img className='h-full w-auto' src={logo} alt='logo' /></a>
             {["Home","Categories","Blog","Contact"].map((item : string,index : number) =>(
               <a href="#" key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item}</a>      
