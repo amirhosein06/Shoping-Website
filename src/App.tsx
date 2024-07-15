@@ -1,12 +1,13 @@
-// import { useState } from 'react'
+import Navbar from "./components/navbar"
 
 function App() {
 
   return (
     <>
-      <h1 className='text-center text-slate-800'>hello new tecnos</h1>
+      <Navbar />
     </>
   )
 }
 
 export default App
+// api : https://fakeapi.platzi.com/en/rest/products/
