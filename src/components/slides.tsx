@@ -2,8 +2,8 @@ import slide1 from './../assets/summerSale.webp';
 import mDslide1 from './../assets/MDsummerSale.webp';
 import slide2 from './../assets/stayHome.webp';
 import mDslide2 from './../assets/MDstayHome.webp';
-import slide3 from './../assets/forAllStyle.webp';
-import mDslide3 from './../assets/MDallStyles.webp';
+import slide3 from './../assets/allStyleY.webp';
+import mDslide3 from './../assets/MDallStyleYe.webp';
 import { useState,useEffect } from 'react';
 
 const Slides = () => {

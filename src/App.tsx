@@ -8,14 +8,10 @@ import HomePage from './homePage'
 interface productType {
   id: number,
   title: string,
-  price: number,
+  price: string,
+  category: string,
   description: string,
-  category: {
-    id: number,
-    name: string,
-    image: string
-  },
-  images: string[]
+  image: string
 }
 
 function App() {
@@ -24,11 +20,13 @@ function App() {
   useEffect(() => {
     const fetchData = async () =>{
       try {
-        const response = await axios.get('https://api.escuelajs.co/api/v1/products');
+        const response = await axios.get('https://fakestoreapi.com/products');
         setData(response.data);
+        
         
       } catch (error : any) {
         console.error(error.message);
+        alert("network eror ! pleace check the conection")
       }
     }
 
@@ -48,3 +46,5 @@ function App() {
 
 export default App
 // api : https://api.escuelajs.co/api/v1/products
+// api2 : https://fakestoreapi.com/docs
+// api3 : https://fakestoreapi.in/docs

@@ -45,7 +45,7 @@ const Navbar = () => {
             </div>
             <div className='md:hidden flex justify-center items-center cursor-pointer col-start-8 col-end-10' onClick={openSideBar}><HambergerMenu size={26} color="#18181b"/></div>
         </div>
-        <div ref={sidebar} className='hidden absolute right-0 top-0 w-3/4 h-full backdrop-blur pl-10 bg-[#00000063] pt-4 flex-col items-center'>
+        <div ref={sidebar} className='z-50 hidden absolute right-0 top-0 w-3/4 h-full backdrop-blur pl-10 bg-[#00000063] pt-4 flex-col items-center'>
           <div className='flex justify-end w-full pr-5' onClick={closeSideBar}><CloseCircle size={40} color="#fff"/></div>
           {["Home","Categories","Blog","Contact"].map((item : string,index : number) =>(
               <a href="#" key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item}</a>      
