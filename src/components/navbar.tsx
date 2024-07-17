@@ -22,13 +22,13 @@ const Navbar = () => {
     }
 
     return ( 
-        <>
+        <div className='sticky top-0 left-0 w-full'>
         <div className="w-full px-3 bg-zinc-900 h-5 flex sm:justify-between text-[11px] sm:text-[12px] justify-center text-white font-sans items-center">
           <div className='hidden sm:block'>New Season is Coming!</div>
           <div>Discount 10% for summery products  |  <a href="#" className="underline">check now</a></div>
           <DiscountShape size={24} color="#fff" className="animate-bounce hidden sm:block"/>
         </div>
-        <div className="z-50 w-full h-14 shadow grid grid-cols-9 md:grid-cols-12">
+        <div className="bg-white z-50 w-full h-14 shadow-md grid grid-cols-9 md:grid-cols-12">
           <a className="col-start-1 md:col-end-3 col-end-4 flex md:pl-4 items-center overflow-hidden font-mono font-extrabold text-2xl" href='#'><img className='h-full w-auto' src={logo} alt='logo' /></a>
             {["Home","Categories","Blog","Contact"].map((item : string,index : number) =>(
               <a href="#" key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item}</a>      
@@ -51,7 +51,7 @@ const Navbar = () => {
               <a href="#" key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item}</a>      
             ))}
         </div>
-        </>
+        </div>
      );
 }
  

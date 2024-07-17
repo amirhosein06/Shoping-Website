@@ -25,7 +25,7 @@ const Slides = () => {
     },[slideIndex])
 
     return ( 
-        <div className='w-full z-10 mt-[2px] h-auto overflow-hidden mx-auto flex items-center justify-start border-b border-zinc-800'>
+        <div className='w-full z-10 mt-[7px] h-auto overflow-hidden mx-auto flex items-center justify-start shadow-md md:rounded'>
             <img src={x.matches ? mDslide1 : slide1} className={`${slideIndex == 1 ? "block" : "hidden"} transition`}/>
             <img src={x.matches ? mDslide2 : slide2} className={`${slideIndex == 2 ? "block" : "hidden"} transition`}/>
             <img src={x.matches ? mDslide3 : slide3} className={`${slideIndex == 3 ? "block" : "hidden"} transition`}/>

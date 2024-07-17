@@ -1,19 +1,31 @@
-import Navbar from "./components/navbar"
-import Slides from "./components/slides"
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 import axios from "axios"
+import { Route,Routes } from "react-router-dom"
+import Context from './components/context/context'
+import HomePage from './homePage'
+
+interface productType {
+  id: number,
+  title: string,
+  price: number,
+  description: string,
+  category: {
+    id: number,
+    name: string,
+    image: string
+  },
+  images: string[]
+}
 
 function App() {
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState<productType[]>([]);
 
   useEffect(() => {
     const fetchData = async () =>{
       try {
         const response = await axios.get('https://api.escuelajs.co/api/v1/products');
-        console.log(response.data);
+        setData(response.data);
         
       } catch (error : any) {
         console.error(error.message);
@@ -25,9 +37,11 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <Slides />
-      <Skeleton circle={false} height={50}/>
+    <Context.Provider value={{data}}>
+      <Routes>
+      <Route path='/' Component={HomePage} />
+      </Routes>
+    </Context.Provider>
     </>
   )
 }
