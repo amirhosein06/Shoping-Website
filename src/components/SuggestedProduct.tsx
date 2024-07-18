@@ -8,28 +8,26 @@ const SuggestedProduct = ({}) => {
     const context = useContext(Context);
     
     return ( 
-        <div className="w-full h-96 px-2 shadow rounded z-20 mb-10 bg-white mt-2">
-        <div className="w-full h-1/6 flex items-center pl-1">
+        <div className="w-full h-[64rem] md:h-[24rem] px-2 shadow rounded z-20 mb-2 bg-white mt-2 overflow-hidden">
+        <div className="w-full h-[4rem] flex items-center pl-1">
          <MedalStar size={24} color="#18181b"/>
          <h1 className="ml-3 text-xl font-normal text-zinc-800">Suggested Products</h1>
         </div>
-        <div className="h-5/6 flex justify-between pb-2">
+        <div className="h-[60rem] md:h-[20rem] grid grid-cols-2 md:grid-cols-5 grid-rows-3 md:grid-rows-1 gap-3 pb-2">
         {context?.data.length === 0 ? (
            <>
-           <SkeletoProduct />
-           <SkeletoProduct />
-           <SkeletoProduct />
-           <SkeletoProduct />
-           <SkeletoProduct />
+           {Array(5).fill(null).map(()=>(
+            <SkeletoProduct />
+           ))}
            </>
         ) : 
          context?.data[7] !== undefined && (
             <>
-            <Product product={context?.data[0]}/>
+            <Product product={context?.data[11]}/>
             <Product product={context?.data[2]}/>
-            <Product product={context?.data[7]}/>
-            <Product product={context?.data[13]}/>
-            <Product product={context?.data[19]}/>
+            <Product product={context?.data[14]}/>
+            <Product product={context?.data[12]}/>
+            <Product product={context?.data[16]}/>
             </>
          )
         }

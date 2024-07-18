@@ -26,7 +26,7 @@ function App() {
         
       } catch (error : any) {
         console.error(error.message);
-        alert("network eror ! pleace check the conection")
+        alert("please check the conection and refresh the page")
       }
     }
 
