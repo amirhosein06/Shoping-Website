@@ -22,16 +22,19 @@ const Product: FC<productprops> = ({product}) => {
     event.currentTarget.innerHTML = "Aded";
     event.target.disabled = true;
   }
+  const forwardToProduct = () : void =>{
+    window.location.assign(`/products/${product.id}`);
+  }
 
     return ( 
-        <div className="w-full col-span-1 row-span-1 h-full shadow-md rounded p-1 border hover:-translate-y-1 transition-transform cursor-pointer">
-          <div className="bg-white w-full h-3/5 flex items-center justify-center overflow-hidden rounded shadow border">
+        <div className="bg-white z-30 w-full col-span-1 row-span-1 h-full shadow-md rounded p-1 border hover:-translate-y-1 transition-transform cursor-pointer">
+          <div onClick={forwardToProduct} className="bg-white w-full h-3/5 flex items-center justify-center overflow-hidden rounded shadow border">
              <img src={product.image} alt={product.title} className="w-auto h-full" />
           </div>
           <div className="flex flex-col h-2/5">
-          <div className="h-2/6 pt-3 ml-2 overflow-hidden text-base text-zinc-950 whitespace-nowrap overflow-ellipsis">{product.title}</div>
-            <div className="w-1/2 flex items-center pl-3 text-xl font-medium h-2/6">${product.price}</div>
-            <button onClick={addingToCart} className="bg-zinc-800 transition-colors hover:bg-zinc-950 text-white w-full h-2/6 rounded">Add To Cart</button>
+          <div onClick={forwardToProduct} className="h-2/6 pt-3 ml-2 overflow-hidden text-base text-zinc-950 whitespace-nowrap overflow-ellipsis">{product.title}</div>
+            <div onClick={forwardToProduct} className="w-1/2 flex items-center pl-3 text-xl font-medium h-2/6">${product.price}</div>
+            <button onClick={addingToCart} className="z-40 bg-zinc-800 transition-colors hover:bg-zinc-950 text-white w-full h-2/6 rounded">Add To Cart</button>
           </div>
         </div>
      );

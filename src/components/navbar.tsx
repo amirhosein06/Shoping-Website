@@ -26,13 +26,13 @@ const Navbar = () => {
         <div className='sticky top-0 left-0 w-full z-40'>
         <div className="w-full px-3 bg-zinc-900 h-5 flex sm:justify-between text-[11px] sm:text-[12px] justify-center text-white font-sans items-center">
           <div className='hidden sm:block'>New Season is Coming!</div>
-          <div>Discount 10% for summery products  |  <a href="#" className="underline">check now</a></div>
+          <div>Discount for summery products  |  <a href="#" className="underline">check now</a></div>
           <DiscountShape size={24} color="#fff" className="animate-bounce hidden sm:block"/>
         </div>
         <div className="bg-white z-50 w-full h-14 shadow-md grid grid-cols-9 md:grid-cols-12">
           <a className="col-start-1 md:col-end-3 col-end-4 flex md:pl-4 items-center overflow-hidden font-mono font-extrabold text-2xl" href='#'><img className='h-full w-auto' src={logo} alt='logo' /></a>
-            {["Home","Categories","Blog","Contact"].map((item : string,index : number) =>(
-              <a href="#" key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item}</a>      
+            {[["Home","/"],["Products","#"],["Blog","#"],["About","#"]].map((item : string[],index : number) =>(
+              <a href={item[1]} key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item[0]}</a>      
             ))}
             <div className="col-start-4 col-end-6 md:col-start-9 md:col-end-12 flex justify-end md:justify-center items-center">
             <input type="text" placeholder='Search Products' className="hidden md:block h-3/5 rounded-s-full border outline-none min-w-3.5 px-4"/>
@@ -49,8 +49,8 @@ const Navbar = () => {
         </div>
                 <div ref={sidebar} className='z-50 hidden fixed right-0 top-0 w-3/4 h-full backdrop-blur pl-10 bg-[#00000063] pt-4 flex-col items-center'>
                 <div className='flex justify-end w-full pr-5' onClick={closeSideBar}><CloseCircle size={40} color="#fff"/></div>
-                {["Home","Categories","Blog","Contact"].map((item : string,index : number) =>(
-                    <a href="#" key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item}</a>      
+                {[["Home","/"],["Products","#"],["Blog","#"],["About","#"]].map((item : string[],index : number) =>(
+                    <a href={item[1]} key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item[0]}</a>      
                   ))}
               </div>
         </>

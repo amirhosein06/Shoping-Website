@@ -4,6 +4,10 @@ import axios from "axios"
 import { Route,Routes } from "react-router-dom"
 import Context from './components/context/context'
 import HomePage from './homePage'
+import Navbar from "./components/navbar"
+import Footer from "./components/footer"
+import SingleProduct from './components/singleProduct'
+import Loading from './components/loading'
 
 interface productType {
   id: number,
@@ -16,6 +20,7 @@ interface productType {
 
 function App() {
   const [data, setData] = useState<productType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -29,16 +34,22 @@ function App() {
         alert("please check the conection and refresh the page")
       }
     }
-
     fetchData();
+    setTimeout(() => setLoading(false), 1000);
   }, []);
+  if (loading) {
+    return <Loading/>
+  }
 
   return (
     <>
     <Context.Provider value={{data}}>
+      <Navbar />
       <Routes>
       <Route path='/' Component={HomePage} />
+      <Route path='/products/:id' Component={SingleProduct} />
       </Routes>
+      <Footer />
     </Context.Provider>
     </>
   )
