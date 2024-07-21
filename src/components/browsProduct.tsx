@@ -14,7 +14,7 @@ const BrowsProduct = () => {
          <Category2 size={24} color="#18181b"/>
          <h1 className="ml-3 text-xl font-normal text-zinc-800">browse to products</h1>
          </div>
-         <button className="bg-zinc-900 w-4/12 md:w-2/12 h-2/3 gap-1 md:gap-3 text-white rounded justify-center flex items-center">See More  <ArrowRight size={20} color="#fff"/></button>
+         <a href="/products" className="bg-zinc-900 w-4/12 md:w-2/12 h-2/3 gap-1 md:gap-3 text-white rounded justify-center flex items-center">See More  <ArrowRight size={20} color="#fff"/></a>
         </div>
         <div className="h-[100rem] md:h-[40rem] grid grid-cols-2 md:grid-cols-5 gap-3 grid-rows-5 md:grid-rows-2 pb-2">
         {context?.data.length === 0 ? (

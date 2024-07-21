@@ -8,6 +8,9 @@ import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 import SingleProduct from './components/singleProduct'
 import Loading from './components/loading'
+import CategoriPage from './components/categoriPage'
+import AllProduct from './components/allProduct'
+import About from './components/about'
 
 interface productType {
   id: number,
@@ -47,7 +50,10 @@ function App() {
       <Navbar />
       <Routes>
       <Route path='/' Component={HomePage} />
+      <Route path='/about' Component={About} />
       <Route path='/products/:id' Component={SingleProduct} />
+      <Route path='/products' Component={AllProduct} />
+      <Route path='/categories/:category' Component={CategoriPage} />
       </Routes>
       <Footer />
     </Context.Provider>

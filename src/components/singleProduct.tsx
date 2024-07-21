@@ -19,7 +19,7 @@ const SingleProduct = () => {
     const productId : string | undefined = routeParams?.id;
     const targetProduct : productType | undefined = context?.data[Number(productId) - 1] ?? undefined
 
-    const addingToCart = (event : any) : void=>{
+    const addingToCart = (event : any)=>{
         event.preventDefault();
         event.currentTarget.classList.remove("bg-zinc-800");
         event.currentTarget.classList.remove("hover:bg-zinc-950");
@@ -33,7 +33,7 @@ const SingleProduct = () => {
             <div className="w-full h-[40rem] md:h-[25rem] grid grid-cols-1 md:grid-cols-3 md:grid-rows-1 grid-rows-3">
             <div className="h-full rounded-md overflow-hidden flex items-center justify-center bg-white shadow-lg col-span-1 row-span-1"><img className="w-auto h-full" src={targetProduct?.image} alt={targetProduct?.title} /></div>
             <div className="h-full md:pl-7 flex justify-end flex-col items-start col-span-2 md:row-span-1 row-span-2">
-               <a href={`/category/${targetProduct?.category}`} className="bg-red-300 text-sm p-1 rounded-lg">{targetProduct?.category}</a>
+               <a href={`/categories/${targetProduct?.category}`} className="bg-red-300 text-sm p-1 rounded-lg">{targetProduct?.category}</a>
                <h1 className="my-4 text-3xl w-full font-medium overflow-hidden whitespace-nowrap overflow-ellipsis">{targetProduct?.title}</h1>
                <p className="h-3/6 text-zinc-800">
                 {targetProduct?.description}

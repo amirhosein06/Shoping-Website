@@ -31,7 +31,7 @@ const Navbar = () => {
         </div>
         <div className="bg-white z-50 w-full h-14 shadow-md grid grid-cols-9 md:grid-cols-12">
           <a className="col-start-1 md:col-end-3 col-end-4 flex md:pl-4 items-center overflow-hidden font-mono font-extrabold text-2xl" href='#'><img className='h-full w-auto' src={logo} alt='logo' /></a>
-            {[["Home","/"],["Products","#"],["Blog","#"],["About","#"]].map((item : string[],index : number) =>(
+            {[["Home","/"],["Products","/products"],["Blog","#"],["About","/about"]].map((item : string[],index : number) =>(
               <a href={item[1]} key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item[0]}</a>      
             ))}
             <div className="col-start-4 col-end-6 md:col-start-9 md:col-end-12 flex justify-end md:justify-center items-center">
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
                 <div ref={sidebar} className='z-50 hidden fixed right-0 top-0 w-3/4 h-full backdrop-blur pl-10 bg-[#00000063] pt-4 flex-col items-center'>
                 <div className='flex justify-end w-full pr-5' onClick={closeSideBar}><CloseCircle size={40} color="#fff"/></div>
-                {[["Home","/"],["Products","#"],["Blog","#"],["About","#"]].map((item : string[],index : number) =>(
+                {[["Home","/"],["Products","/products"],["Blog","#"],["About","/about"]].map((item : string[],index : number) =>(
                     <a href={item[1]} key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item[0]}</a>      
                   ))}
               </div>
