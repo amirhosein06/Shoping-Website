@@ -1,10 +1,13 @@
 import {ShoppingCart,SearchNormal1,DiscountShape,HambergerMenu,CloseCircle} from 'iconsax-react';
-import { useRef,useEffect } from 'react';
+import { useRef,useEffect,useState } from 'react';
 import logo from './../assets/AZlogo.webp';
 
 const Navbar = () => {
     let x : any = window.matchMedia("(min-width: 768px)");
     const sidebar = useRef<HTMLDivElement>(null);
+    const [searchInputValue, setsearchInputValue] = useState<string>("");
+    const [showSearchInput, setshowSearchInput] = useState<boolean>(false);
+    const [searchButtonInner, setsearchButtonInner] = useState(<SearchNormal1 size={19} color={x.matches ? "#fff" : "#18181b"}/>);
 
     useEffect(() => {
       if (sidebar.current) {
@@ -19,6 +22,27 @@ const Navbar = () => {
     const closeSideBar = (): void =>{
       sidebar.current?.classList.remove("flex");
       sidebar.current?.classList.add("hidden");
+    }
+    const gettingToSearchValue = (event : any) =>{
+      setsearchInputValue(event.target.value);
+    }
+    const goToSearchPage = () :void =>{
+      window.location.assign(`/search/${searchInputValue}`);
+    }
+    const checkEnterKey = (event : any) :void=>{
+      if (event.key === "Enter") {
+        goToSearchPage();
+      }
+    }
+    const openInputOnMobile = (event :any) :void =>{
+        event.preventDefault();
+        if (showSearchInput) {
+          setshowSearchInput(false);
+          setsearchButtonInner(<SearchNormal1 size={19} color={x.matches ? "#fff" : "#18181b"}/>);
+        }else{       
+          setshowSearchInput(true);
+          setsearchButtonInner(<CloseCircle size={24} color="#18181b"/>);          
+        }
     }
 
     return ( 
@@ -35,9 +59,9 @@ const Navbar = () => {
               <a href={item[1]} key={index} className="hidden md:flex hover:underline font-normal transition-all col-span-1 justify-center items-center">{item[0]}</a>      
             ))}
             <div className="col-start-4 col-end-6 md:col-start-9 md:col-end-12 flex justify-end md:justify-center items-center">
-            <input type="text" placeholder='Search Products' className="hidden md:block h-3/5 rounded-s-full border outline-none min-w-3.5 px-4"/>
-            <span className='flex justify-center items-center md:bg-zinc-900 h-3/5 px-2 min-w-2.5 cursor-pointer rounded-e-full bg-white'>
-            <SearchNormal1 size={19} color={x.matches ? "#fff" : "#18181b"}/>
+            <input value={searchInputValue} onKeyDown={checkEnterKey} onChange={gettingToSearchValue} type="search" placeholder='Search Products' className="hidden md:block h-3/5 rounded-s-full border outline-none min-w-3.5 px-4"/>
+            <span onClick={x.matches ? goToSearchPage : openInputOnMobile} className='flex justify-center items-center md:bg-zinc-900 h-3/5 px-2 min-w-2.5 cursor-pointer rounded-e-full bg-white'>
+            {searchButtonInner}
             </span>
             </div>
             <div className="h-full flex items-center justify-end md:justify-center md:col-start-12 md:col-end-13 col-start-6 col-end-8">
@@ -53,6 +77,13 @@ const Navbar = () => {
                     <a href={item[1]} key={index} className="flex h-20 active:underline text-white text-2xl font-normal w-full items-center">{item[0]}</a>      
                   ))}
               </div>
+
+            <div className={`fixed top-[4.75rem] left-0 h-14 w-full bg-white justify-center items-center ${showSearchInput ? "flex" : "hidden"}`}>
+              <input value={searchInputValue} onKeyDown={checkEnterKey} onChange={gettingToSearchValue} inputMode='search' type="search" placeholder='Search Products' className="h-4/5 rounded-s-full border outline-none w-4/5 px-4"/>
+              <span onClick={goToSearchPage} className='flex justify-center items-center md:bg-zinc-900 h-4/5 px-2 min-w-2.5 cursor-pointer rounded-e-full bg-zinc-900'>
+              <SearchNormal1 size={19} color="#fff"/>
+              </span>
+            </div>
         </>
      );
 }
