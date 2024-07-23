@@ -17,7 +17,8 @@ const SingleProduct = () => {
     const routeParams = useParams();
     const context = useContext(Context);
     const productId : string | undefined = routeParams?.id;
-    const targetProduct : productType | undefined = context?.data[Number(productId) - 1] ?? undefined
+    const targetProduct : productType | undefined = context?.data[Number(productId) - 1] ?? undefined;
+    const checkCartAdd : boolean | undefined = targetProduct !== undefined ? context?.cart.includes(targetProduct.id) : undefined;  
 
     const addingToCart = (event : any)=>{
         event.preventDefault();
@@ -26,6 +27,7 @@ const SingleProduct = () => {
         event.currentTarget.classList.add("bg-green-700");
         event.currentTarget.innerHTML = "Aded";
         event.target.disabled = true;
+        context?.setcart([...context.cart,targetProduct?.id]);
       }
 
     return ( 
@@ -40,7 +42,7 @@ const SingleProduct = () => {
                </p>
                <div className="flex md:gap-0 gap-3 md:items-center w-full flex-col md:flex-row">
                 <h2 className="w-1/4 font-semibold text-3xl">${targetProduct?.price}</h2>
-                <button onClick={addingToCart} className="bg-zinc-800 transition-colors hover:bg-zinc-950 text-white w-full md:w-3/4 rounded py-4">Add To Cart</button>
+                <button disabled={checkCartAdd ? true : false} onClick={addingToCart} className={`${checkCartAdd ? "bg-green-700" : "bg-zinc-800 hover:bg-zinc-950"} transition-colors text-white w-full md:w-3/4 rounded py-4`}>{checkCartAdd ? "Aded" : "Add To Cart"}</button>
                </div>
             </div>
             </div>

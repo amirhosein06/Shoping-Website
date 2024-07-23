@@ -1,10 +1,13 @@
 import {ShoppingCart,SearchNormal1,DiscountShape,HambergerMenu,CloseCircle} from 'iconsax-react';
 import { useRef,useEffect,useState } from 'react';
 import logo from './../assets/AZlogo.webp';
+import { useContext } from "react";
+import Context from "./context/context";
 
 const Navbar = () => {
     let x : any = window.matchMedia("(min-width: 768px)");
     const sidebar = useRef<HTMLDivElement>(null);
+    const context = useContext(Context);
     const [searchInputValue, setsearchInputValue] = useState<string>("");
     const [showSearchInput, setshowSearchInput] = useState<boolean>(false);
     const [searchButtonInner, setsearchButtonInner] = useState(<SearchNormal1 size={19} color={x.matches ? "#fff" : "#18181b"}/>);
@@ -65,8 +68,8 @@ const Navbar = () => {
             </span>
             </div>
             <div className="h-full flex items-center justify-end md:justify-center md:col-start-12 md:col-end-13 col-start-6 col-end-8">
-            <a href='#' className='flex items-center justify-center'><ShoppingCart size={24} color="#18181b"/><b className='font-normal hidden md:block'>cart</b></a>
-              <div className="cursor-default ml-1 text-white w-5 h-5 rounded-full bg-zinc-800 text-md flex items-center justify-center text-[12px]">0</div>
+            <a href='/cart' className='flex items-center justify-center'><ShoppingCart size={24} color="#18181b"/><b className='font-normal hidden md:block'>cart</b></a>
+              <div className="cursor-default ml-1 text-white w-5 h-5 rounded-full bg-zinc-800 text-md flex items-center justify-center text-[12px]">{context?.cart.length}</div>
             </div>
             <div className='md:hidden flex justify-center items-center cursor-pointer col-start-8 col-end-10' onClick={openSideBar}><HambergerMenu size={26} color="#18181b"/></div>
         </div>

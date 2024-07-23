@@ -12,6 +12,8 @@ import CategoriPage from './components/categoriPage'
 import AllProduct from './components/allProduct'
 import About from './components/about'
 import SearchProduct from './components/searchonProduct'
+import Cart from './components/cart/cart'
+import NotFound from './components/notFound'
 
 interface productType {
   id: number,
@@ -25,6 +27,7 @@ interface productType {
 function App() {
   const [data, setData] = useState<productType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [cart, setcart] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -41,13 +44,30 @@ function App() {
     fetchData();
     setTimeout(() => setLoading(false), 1000);
   }, []);
+
+  useEffect(()=>{
+    const cartStorage = localStorage.getItem("cart");
+    if (cartStorage === null) {
+      const stringofCart = JSON.stringify(cart);
+      localStorage.setItem("cart",stringofCart);
+    }else{
+      if (cart.length === 0) {
+        const parsedStorage = JSON.parse(cartStorage);
+        setcart(parsedStorage);
+      }else{
+        const stringofCart = JSON.stringify(cart);
+        localStorage.setItem("cart",stringofCart);
+      }
+    }
+  })
+  
   if (loading) {
     return <Loading/>
   }
 
   return (
     <>
-    <Context.Provider value={{data}}>
+    <Context.Provider value={{data,cart,setcart}}>
       <Navbar />
       <Routes>
       <Route path='/' Component={HomePage} />
@@ -56,6 +76,8 @@ function App() {
       <Route path='/products' Component={AllProduct} />
       <Route path='/categories/:category' Component={CategoriPage} />
       <Route path='/search/:value' Component={SearchProduct} />
+      <Route path='/cart' Component={Cart} />
+      <Route path='*' Component={NotFound} />
       </Routes>
       <Footer />
     </Context.Provider>

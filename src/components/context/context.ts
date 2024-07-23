@@ -10,7 +10,9 @@ interface productType {
 }
 
 interface contextype {
-    data : productType[]
+    data : productType[],
+    cart: number[],
+    setcart: any
 }
 
 const Context = createContext<contextype | null>(null);

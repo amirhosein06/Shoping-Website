@@ -1,4 +1,6 @@
-import { FC } from "react"
+import { FC } from "react";
+import { useContext } from "react";
+import Context from "./context/context";
 
 interface productType {
   id: number,
@@ -13,6 +15,8 @@ interface productprops {
 }
 
 const Product: FC<productprops> = ({product}) => {
+  const context = useContext(Context);
+  const checkCartAdd : boolean | undefined = context?.cart.includes(product.id);  
   
   const addingToCart = (event : any) : void=>{
     event.preventDefault();
@@ -21,6 +25,7 @@ const Product: FC<productprops> = ({product}) => {
     event.currentTarget.classList.add("bg-green-700");
     event.currentTarget.innerHTML = "Aded";
     event.target.disabled = true;
+    context?.setcart([...context.cart,product?.id]);
   }
   const forwardToProduct = () : void =>{
     window.location.assign(`/products/${product.id}`);
@@ -34,7 +39,7 @@ const Product: FC<productprops> = ({product}) => {
           <div className="flex flex-col h-2/5">
           <div onClick={forwardToProduct} className="h-2/6 pt-3 ml-2 overflow-hidden text-base text-zinc-950 whitespace-nowrap overflow-ellipsis">{product.title}</div>
             <div onClick={forwardToProduct} className="w-1/2 flex items-center pl-3 text-xl font-medium h-2/6">${product.price}</div>
-            <button onClick={addingToCart} className="z-40 bg-zinc-800 transition-colors hover:bg-zinc-950 text-white w-full h-2/6 rounded">Add To Cart</button>
+            <button disabled={checkCartAdd ? true : false} onClick={addingToCart} className={`z-40 ${checkCartAdd ? "bg-green-700" : "bg-zinc-800 hover:bg-zinc-950"} transition-colors text-white w-full h-2/6 rounded`}>{checkCartAdd ? "Aded" : "Add To Cart"}</button>
           </div>
         </div>
      );
