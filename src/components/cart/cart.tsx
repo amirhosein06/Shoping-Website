@@ -22,7 +22,7 @@ const Cart = () => {
 
     return ( 
         <div className="w-full mt-2 bg-white grid md:grid-cols-4 grid-cols-1">
-            <div className={`${context?.cart.length !== 0 ? "opacity-100" : "opacity-70"} h-80 fixed left-0 bottom-0 bg-white w-full md:relative md:gap-1 md:col-start-4 col-end-5 border shadow rounded md:m-3 py-5 px-7 text-zinc-900 flex flex-col items-center justify-between font-normal text-2xl`}>
+            <div className={`${context?.cart.length !== 0 ? "opacity-100" : "opacity-70"} h-80 fixed left-0 bottom-0 bg-white md:w-11/12 md:relative md:gap-1 md:col-start-4 md:col-end-5 border shadow rounded md:my-3 md:ml-3 py-5 px-7 text-zinc-900 flex flex-col items-center justify-between font-normal text-2xl`}>
             ORDER SUMMARY
             <div className="w-full text-lg text-zinc-700 flex justify-between items-center"><span>Total:</span> <span>${total}</span></div>
             <div className="w-full text-lg text-zinc-700 flex justify-between items-center"><span>Estimate Shipping:</span> <span>$0.00</span></div>
